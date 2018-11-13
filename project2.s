@@ -11,5 +11,7 @@ main:
   li $a1, 16
   syscall
 
+  
+
   li $v0, 10
   syscall
