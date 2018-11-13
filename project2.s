@@ -111,6 +111,9 @@ base_33_upper_conv:
 	addi $s4, $s4, -55
 	j serialize_result
 
+base_33_lower_conv:
+	addi $s4, $s4, -87
+
 exit:
   li $v0, 10
   syscall
