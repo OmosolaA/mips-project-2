@@ -60,6 +60,24 @@ after_len_found:
 	move $a0, $t4
 	j check_str
 
+check_str:
+	lb $t5, 0($a0)
+	beqz $t5, prepare_for_conversion
+	beq $t5, $t1, prepare_for_conversion
+	slti $t6, $t5, 48                 # if char < ascii(48),  input invalid,   ascii(48) = 0
+	bne $t6, $zero, err_invalid_input
+	slti $t6, $t5, 58                 # if char < ascii(58),  input is valid,  ascii(58) = 9
+	bne $t6, $zero, step_char_forward
+	slti $t6, $t5, 65                 # if char < ascii(65),  input invalid,   ascii(97) = A
+	bne $t6, $zero, err_invalid_input
+	slti $t6, $t5, 88                 # if char < ascii(88),  input is valid,  ascii(88) = X
+	bne $t6, $zero, step_char_forward
+	slti $t6, $t5, 97                 # if char < ascii(97),  input invalid,   ascii(97) = a
+	bne $t6, $zero, err_invalid_input
+	slti $t6, $t5, 120                # if char < ascii(120), input is valid, ascii(120) = x
+	bne $t6, $zero, step_char_forward
+	bgt $t5, 119, err_invalid_input   # if char > ascii(119), input invalid,  ascii(119) = w
+
 exit:
   li $v0, 10
   syscall
