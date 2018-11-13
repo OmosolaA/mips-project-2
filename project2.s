@@ -17,6 +17,12 @@ err_invalid_input:
   syscall
   j exit
 
+err_long_input:
+  la $a0, longInput
+  li $v0, 4
+  syscall
+  j exit
+
 main:
   li $v0, 8
   la $a0, userInput
