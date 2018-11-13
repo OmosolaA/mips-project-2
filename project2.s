@@ -1,7 +1,7 @@
 .data
   emptyInput:   .asciiz "Input is empty."
   invalidInput: .asciiz "Invalid base-33 number."
-  longInput:    .asciiz "Input is too long"
+  longInput:    .asciiz "Input is too long."
   userInput:    .space  512
 
 .text
@@ -26,7 +26,7 @@ err_long_input:
 main:
   li $v0, 8
   la $a0, userInput
-  li $a1, 16
+  li $a1, 100
   syscall
 
   la $t0, userInput
