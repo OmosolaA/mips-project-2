@@ -78,7 +78,7 @@ check_str:
 	bne $t6, $zero, step_char_forward
 	bgt $t5, 119, err_invalid_input   # if char > ascii(119), input invalid,  ascii(119) = w
 
-step_char_forward: # step one character ahead
+step_char_forward:
 	addi $a0, $a0, 1
 	j check_str
 
