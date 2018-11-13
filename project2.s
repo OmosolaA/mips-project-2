@@ -17,12 +17,17 @@ get_str_len:
   beq $t1, $zero, after_get_str_len
   addi $t0, $t0, 1
   j get_str_len
-
 after_get_str_len:
   la $t1, userInput
   sub $t2, $t0, $t1
-  addi $a0, $t2, -1
-  li $v0, 1
+  addi $s0, $t2, -1 # s0 has input len (without null term)
+
+addi $t0, $s0, 0
+print_str_char:
+  la $a1, longInput
+  addu $a1, $a1, 0
+  lbu $a0, ($a1)
+  li $v0, 11
   syscall
 
   li $v0, 10
