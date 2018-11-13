@@ -14,13 +14,14 @@ main:
   la $t0, userInput
 get_str_len:
   lb $t1, 0($t0)
-  beq $t1, $zero, end
+  beq $t1, $zero, after_get_str_len
   addi $t0, $t0, 1
   j get_str_len
 
-end:
+after_get_str_len:
   la $t1, userInput
-  sub $a0, $t0, $t1
+  sub $t2, $t0, $t1
+  addi $a0, $t2, -1
   li $v0, 1
   syscall
 
