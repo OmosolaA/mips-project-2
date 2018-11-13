@@ -40,14 +40,14 @@ after_get_str_len:
   sub $t2, $t0, $t1
   addi $s0, $t2, -1 # s0 has input len (without null term)
 
-beq $s0, $zero, err_empty_input
+beq $s0, $zero, err_empty_input 
 
 addi $t0, $s0, 0
 print_str_char:
   la $a1, userInput
   sub $t1, $s0, $t0
   addu $a1, $a1, $t1
-  lbu $a0, ($a1)
+  lbu $a0, ($a1) # a0 has character at index t1
   li $v0, 11
   syscall
   sub $t0, $t0, 1
