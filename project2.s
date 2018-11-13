@@ -5,6 +5,12 @@
   userInput:    .space  512
 
 .text
+err_empty_input:
+  la $a0, emptyInput
+  li $v0, 4
+  syscall
+  j exit
+
 main:
   li $v0, 8
   la $a0, userInput
@@ -21,6 +27,8 @@ after_get_str_len:
   la $t1, userInput
   sub $t2, $t0, $t1
   addi $s0, $t2, -1 # s0 has input len (without null term)
+
+beq $s0, $zero, err_empty_input
 
 addi $t0, $s0, 0
 print_str_char:
