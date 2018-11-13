@@ -11,12 +11,18 @@ main:
   li $a1, 16
   syscall
 
-  li $t0, $zero
+  la $t0, userInput
 get_str_len:
-  lb $t1, $t0
+  lb $t1, 0($t0)
   beq $t1, $zero, end
+  addi $t0, $t0, 1
   j get_str_len
 
+end:
+  la $t1, userInput
+  sub $a0, $t0, $t1
+  li $v0, 1
+  syscall
 
   li $v0, 10
   syscall
