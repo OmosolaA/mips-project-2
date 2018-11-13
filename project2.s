@@ -11,7 +11,12 @@ main:
   li $a1, 16
   syscall
 
-  
+  li $t0, $zero
+get_str_len:
+  lb $t1, $t0
+  beq $t1, $zero, end
+  j get_str_len
+
 
   li $v0, 10
   syscall
