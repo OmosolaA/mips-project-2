@@ -6,5 +6,10 @@
 
 .text
 main:
+  li $v0, 8
+  la $a0, userInput
+  li $a1, 16
+  syscall
+
   li $v0, 10
   syscall
