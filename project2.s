@@ -11,6 +11,12 @@ err_empty_input:
   syscall
   j exit
 
+err_invalid_input:
+  la $a0, invalidInput
+  li $v0, 4
+  syscall
+  j exit
+
 main:
   li $v0, 8
   la $a0, userInput
