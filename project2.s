@@ -36,6 +36,10 @@ delete_left_pad:
 	move $t9, $a0
 	j input_len
 
+delete_first_char:
+	addi $a0, $a0, 1
+	j delete_left_pad
+
 exit:
   li $v0, 10
   syscall
