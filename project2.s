@@ -24,11 +24,15 @@ after_get_str_len:
 
 addi $t0, $s0, 0
 print_str_char:
-  la $a1, longInput
-  addu $a1, $a1, 0
+  la $a1, userInput
+  sub $t1, $s0, $t0
+  addu $a1, $a1, $t1
   lbu $a0, ($a1)
   li $v0, 11
   syscall
+  sub $t0, $t0, 1
+  beq $t0, $zero, exit
+  j print_str_char
 
 exit:
   li $v0, 10
