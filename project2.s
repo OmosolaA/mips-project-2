@@ -42,6 +42,12 @@ after_get_str_len:
 
 beq $s0, $zero, err_empty_input 
 
+delete_left_pad:
+  li $t8, 32      #Save space character to t8
+  lb $t9, 0($a0)
+  beq $t8, $t9, removeFirst
+  move $t9, $a0
+
 addi $t0, $s0, 0
 print_str_char:
   la $a1, userInput
