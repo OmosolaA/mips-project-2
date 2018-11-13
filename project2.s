@@ -40,8 +40,7 @@ after_get_str_len:
   sub $t2, $t0, $t1
   addi $s0, $t2, -1 # s0 has input len (without null term)
 
-beq $s0, $zero, err_empty_input 
-
+la $a0, userInput
 delete_left_pad:
   li $t8, 32      #Save space character to t8
   lb $t9, 0($a0)
@@ -50,8 +49,11 @@ delete_left_pad:
   j print_str_char
 
 remove_first_char:
+  j exit
   addi $a0, $a0, 1
   j delete_left_pad
+
+beq $s0, $zero, err_empty_input 
 
 addi $t0, $s0, 0
 print_str_char:
