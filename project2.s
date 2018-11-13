@@ -1,3 +1,5 @@
+# NOTE: [pseudocode] ascii(n) returns the ascii character with decimal representation n
+# NOTE: if you intend to customize this code while maintaining behavior, pay close attention to the ascii values checked in conditional branches
 .data
   emptyInput:   .asciiz "Input is empty."
   invalidInput: .asciiz "Invalid base-33 number."
