@@ -45,8 +45,13 @@ beq $s0, $zero, err_empty_input
 delete_left_pad:
   li $t8, 32      #Save space character to t8
   lb $t9, 0($a0)
-  beq $t8, $t9, removeFirst
+  beq $t8, $t9, remove_first_char
   move $t9, $a0
+  j print_str_char
+
+remove_first_char:
+  addi $a0, $a0, 1
+  j delete_left_pad
 
 addi $t0, $s0, 0
 print_str_char:
