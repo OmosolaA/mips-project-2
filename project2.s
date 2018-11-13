@@ -30,5 +30,6 @@ print_str_char:
   li $v0, 11
   syscall
 
+exit:
   li $v0, 10
   syscall
